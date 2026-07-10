@@ -6,7 +6,9 @@ import plotly.graph_objects as go
 import uuid
 from datetime import datetime
 
-API_URL = "http://localhost:8000/api"
+# API_URL = "http://localhost:8000/api"
+import os
+API_URL = os.getenv("API_URL", "http://localhost:8000/api")
 
 st.set_page_config(
     page_title="AI BI Copilot",
