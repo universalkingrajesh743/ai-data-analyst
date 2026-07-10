@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+sample_data/uploads/
+sample_data/practice_dbs/
+*.db
+*.sqlite
+.streamlit/secrets.toml
+debug_agent.py
+test_db.py
+test.py
