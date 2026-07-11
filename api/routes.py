@@ -197,17 +197,25 @@ def data_quality(db_path: str = "sample_data/sales.db"):
 
 @router.get("/forecast")
 def forecast_endpoint(
-    metric:  str = "revenue",
-    periods: int = 6,
-    region:  str = None,
-    db_path: str = "sample_data/sales.db"
+    metric:       str = "auto",
+    periods:      int = 6,
+    region:       str = None,
+    table:        str = None,
+    date_col:     str = None,
+    value_col:    str = None,
+    category_col: str = None,
+    db_path:      str = "sample_data/sales.db"
 ):
     try:
         result = run_forecast(
-            db_path = db_path,
-            metric  = metric,
-            periods = periods,
-            region  = region
+            db_path      = db_path,
+            metric       = metric,
+            periods      = periods,
+            region       = region,
+            table        = table,
+            date_col     = date_col,
+            value_col    = value_col,
+            category_col = category_col
         )
         return forecast_to_dict(result)
     except Exception as e:
@@ -218,11 +226,15 @@ def forecast_endpoint(
 
 class RootCauseRequest(BaseModel):
     question:       str
-    region:         str = "Odisha"
-    period:         str = "2024-07"
-    compare_period: str = "2024-04"
-    metric:         str = "revenue"
-    db_path:        str = "sample_data/sales.db"
+    region:         str  = None
+    period:         str  = "2024-07"
+    compare_period: str  = "2024-04"
+    metric:         str  = "auto"
+    db_path:        str  = "sample_data/sales.db"
+    table:          str  = None
+    date_col:       str  = None
+    metric_col:     str  = None
+    filter_col:     str  = None
 
 
 @router.post("/root-cause")
@@ -234,7 +246,11 @@ def root_cause_endpoint(req: RootCauseRequest):
             region         = req.region,
             period         = req.period,
             compare_period = req.compare_period,
-            metric         = req.metric
+            metric         = req.metric,
+            table          = req.table,
+            date_col       = req.date_col,
+            metric_col     = req.metric_col,
+            filter_col     = req.filter_col
         )
         return result
     except Exception as e:
@@ -278,10 +294,10 @@ def alerts_endpoint(
 ):
     try:
         report = check_alerts(
-            db_path                 = db_path,
-            revenue_drop_threshold  = revenue_drop_threshold,
-            return_rate_threshold   = return_rate_threshold,
-            discount_threshold      = discount_threshold
+            db_path                = db_path,
+            revenue_drop_threshold = revenue_drop_threshold,
+            return_rate_threshold  = return_rate_threshold,
+            discount_threshold     = discount_threshold
         )
         return format_alert_report(report)
     except Exception as e:
