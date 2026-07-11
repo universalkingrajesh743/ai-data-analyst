@@ -21,7 +21,7 @@ This platform solves all three with a multi-agent AI system.
 
 ## 🚀 Live Demo
 
-🔗 **[your-username-ai-data-analyst.streamlit.app](https://streamlit.app)**
+🔗 **[https://ai-data-analyst-jdd7sbljxf68pr9qvucqxq.streamlit.app/](https://streamlit.app)**
 
 ---
 
@@ -44,7 +44,9 @@ This platform solves all three with a multi-agent AI system.
 | 📂 Multi-DB Support | Upload any SQLite or PostgreSQL DB | Connector |
 | 📄 PDF Report Export | Full session report with charts + SQL | Report Generator |
 | ⬇️ CSV Export | Download any query result | Export |
-
+| 📈 Universal Forecasting | Predicts any metric in any database | Forecasting Agent |
+| 🔎 Universal Root Cause | Investigates drops in any schema | RCA Agent |
+| 🚨 Universal Alerts | Monitors any table for anomalies | Alerting Agent |
 ---
 
 ## 🧠 Multi-Agent Architecture
